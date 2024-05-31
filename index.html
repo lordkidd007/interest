@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>利率计算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .calculator {
+            width: 300px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .timeClass {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="input-group">
+            <label for="principal">本金:</label>
+            <input type="number" id="principal" placeholder="请输入本金">
+        </div>
+        <div class="input-group">
+            <label for="interest-rate">年利率(%):</label>
+            <input type="number" id="interest-rate" placeholder="请输入年利率">
+        </div>
+        <div class="input-group2">
+            <label for="time">时间:</label>
+            <input type="radio" name="option" value="年">年
+            <input type="radio" name="option" value="月">月
+            <input type="radio" name="option" value="日" checked>日
+            <input class="timeClass" type="number" id="time" placeholder="请输入时间">
+        </div>
+        <div>&nbsp;</div>
+        <button onclick="calculate()">计算</button>
+        <button onclick="Clear()">清空</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function Clear() {
+            document.getElementById('result').innerHTML = "";
+        }
+        function calculate() {
+            var principal = parseFloat(document.getElementById('principal').value);
+            var interestRate = parseFloat(document.getElementById('interest-rate').value) / 100; // 转换为小数形式  
+            var time = parseFloat(document.getElementById('time').value);
+
+            var selectedValue = getSelectedRadioValue('option');
+            console.log(selectedValue); // 输出被选中的单选按钮的值，或者如果没有选中则输出null
+            var futureValue = "", interest = "";
+
+            if (selectedValue == "年") {
+                interestRate = Math.pow((1 + interestRate), time);
+            }
+            if (selectedValue == "月") {
+                interestRate = interestRate / 12.0 * time + 1;
+            }
+            if (selectedValue == "日") {
+                interestRate = interestRate / 365.0 * time + 1;
+
+            }
+            futureValue = principal * interestRate;//* Math.pow((1 + interestRate), time);
+            interest = futureValue - principal;
+            console.log(selectedValue, interestRate);
+            var oldValue = document.getElementById('result').innerHTML;
+            document.getElementById('result').innerHTML = oldValue + "未来值: " + futureValue.toFixed(2) + "，" + time + selectedValue + "利息: " + interest.toFixed(2) + "<br>";
+        }
+        function getSelectedRadioValue(radioName) {
+            var radios = document.getElementsByName(radioName);
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    return radios[i].value;
+                }
+            }
+            return null; // 如果没有选项被选中，则返回null  
+        }
+
+        // 使用示例  
+
+    </script>
+</body>
+
+</html>
