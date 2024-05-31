@@ -18,7 +18,7 @@
         }
 
         .calculator {
-            width: 300px;
+            width: 3000px;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 10px;
@@ -50,7 +50,7 @@
 
         .result {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 10px;
             font-weight: bold;
         }
     </style>
@@ -86,6 +86,7 @@
         function calculate() {
             var principal = parseFloat(document.getElementById('principal').value);
             var interestRate = parseFloat(document.getElementById('interest-rate').value) / 100; // 转换为小数形式  
+            var interestRate2 = interestRate; // 转换为小数形式  
             var time = parseFloat(document.getElementById('time').value);
 
             var selectedValue = getSelectedRadioValue('option');
@@ -106,7 +107,7 @@
             interest = futureValue - principal;
             console.log(selectedValue, interestRate);
             var oldValue = document.getElementById('result').innerHTML;
-            document.getElementById('result').innerHTML = oldValue + "未来值: " + futureValue.toFixed(2) + "，" + time + selectedValue + "利息: " + interest.toFixed(2) + "<br>";
+            document.getElementById('result').innerHTML = oldValue + "本金: " + principal.toFixed(2) + " 年利率: " + interestRate2 + "% 未来值: " + futureValue.toFixed(2) + "，" + time + selectedValue + "利息: " + interest.toFixed(2) + "<br>";
         }
         function getSelectedRadioValue(radioName) {
             var radios = document.getElementsByName(radioName);
