@@ -107,7 +107,7 @@
             interest = futureValue - principal;
             console.log(selectedValue, interestRate);
             var oldValue = document.getElementById('result').innerHTML;
-            document.getElementById('result').innerHTML = oldValue + "本金: " + principal.toFixed(2) + " 年利率: " + interestRate2 + "% 未来值: " + futureValue.toFixed(2) + "，" + time + selectedValue + "利息: " + interest.toFixed(2) + "<br>";
+            document.getElementById('result').innerHTML = oldValue + "本金: " + principal.toFixed(2) + " 年利率: " + interestRate2.toFixed(2) + "% 未来值: " + futureValue.toFixed(2) + "，" + time + selectedValue + "利息: " + interest.toFixed(2) + "<br>";
         }
         function getSelectedRadioValue(radioName) {
             var radios = document.getElementsByName(radioName);
