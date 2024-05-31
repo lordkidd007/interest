@@ -86,7 +86,7 @@
         function calculate() {
             var principal = parseFloat(document.getElementById('principal').value);
             var interestRate = parseFloat(document.getElementById('interest-rate').value) / 100; // 转换为小数形式  
-            var interestRate2 = interestRate; // 转换为小数形式  
+            var interestRate2 = parseFloat(document.getElementById('interest-rate').value); 
             var time = parseFloat(document.getElementById('time').value);
 
             var selectedValue = getSelectedRadioValue('option');
